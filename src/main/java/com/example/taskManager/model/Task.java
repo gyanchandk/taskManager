@@ -1,5 +1,6 @@
 package com.example.taskManager.model;
 
+import com.example.taskManager.enums.TaskStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,8 +22,16 @@ public class Task {
     @Column(name = "content")
     private String content;
 
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private TaskStatus status;
+
     @Column(name = "created_at")
     private LocalDateTime created_at;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 
 

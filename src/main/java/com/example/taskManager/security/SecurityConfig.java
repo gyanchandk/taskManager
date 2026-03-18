@@ -18,7 +18,10 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(HttpMethod.POST,"/auth/**").permitAll()
                         .requestMatchers(HttpMethod.GET,"/status").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/user").permitAll()
+
                         .anyRequest().authenticated()
                 )
                 .formLogin(Customizer.withDefaults());
